@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,11 +16,10 @@ spec:
         image: nginx:alpine
         resources:
           limits:
-            memory: "10Mi"
-            cpu: "10m"
+            memory: "32Mi"
+            cpu: "50m"
         ports:
         - containerPort: 80
-
 ---
 apiVersion: v1
 kind: Service
@@ -33,27 +31,23 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-geprek-milenial
-  labels:
-    name: ingress-geprek-milenial
+  name: ingress-life4devops
   annotations:
-    # tiap cloud provider ada caranya masing-masing agar ingress dapat bekerja
-    # biasanya menggunakan annotations
-    # annotations dibawah ini jika kita menggunakan GKE (Google Kubernetes Engine)
-    kubernetes.io/ingress.class: gce # https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#controller_summary
-    kubernetes.io/ingress.allow-http: "false" #https://cloud.google.com/kubernetes-engine/docs/concepts/ingress-xlb#disabling_http
+    # Menggunakan Nginx Ingress Controller
+    kubernetes.io/ingress.class: "nginx"
+    # Mengarahkan cert-manager untuk memproses SSL ini
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
-  tls: # konfigurasi HTTPS
-    - hosts:
-      - geprek-milenial.xyz
-      secretName: tls-geprek-milenial # nama object secret TLS yang dibuat
+  tls:
+  - hosts:
+    - life4devops.site
+    secretName: tls-life4devops # Secret ini akan dibuat otomatis oleh cert-manager
   rules:
-  - host: geprek-milenial.xyz
+  - host: life4devops.site
     http:
       paths:
       - pathType: Prefix
@@ -61,7 +55,5 @@ spec:
         backend:
           service:
             name: nginx-raw
-            port: 
+            port:
               number: 80
-
-
