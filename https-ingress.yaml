@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-raw
+  namespace: devops-academy
 spec:
   selector:
     matchLabels:
@@ -25,6 +26,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-raw
+  namespace: devops-academy
 spec:
   selector:
     app: nginx-raw
@@ -36,6 +38,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-life4devops
+  namespace: devops-academy
   annotations:
     # Menggunakan Nginx Ingress Controller
     kubernetes.io/ingress.class: "nginx"
