@@ -28,7 +28,7 @@ metadata:
   name: nginx-headless
 spec:
   type: ClusterIP # Harus menggunakan ClusterIP
-  clusterIP: None # value ini harus None
+  #clusterIP: None # value ini harus None
   selector:
     app: nginx-headless
   ports:
