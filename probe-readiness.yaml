@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-app-readiness
+  namespace: devops-academy
 spec:
   replicas: 2
   selector:
@@ -28,8 +29,6 @@ spec:
           initialDelaySeconds: 5 # tunggu 5 detik di awal sebelum melakukan probe yang pertama
           failureThreshold: 5 # berapa banyak error/failure yang ditoleransi
           periodSeconds: 10 # interval pengecekan
-
-
 ---
 apiVersion: v1
 kind: Service
@@ -41,4 +40,3 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-

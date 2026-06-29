@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-app-startup
+  namespace: devops-academy
 spec:
   selector:
     matchLabels:
@@ -26,6 +27,5 @@ spec:
           initialDelaySeconds: 5 # tunggu 5 detik di awal sebelum melakukan probe yang pertama
           failureThreshold: 5 # berapa banyak error/failure yang ditoleransi
           periodSeconds: 10 # interval pengecekan
-
           # total 10 * 5 = 50 detik maksimal untuk container ini dicek
           # jika lebih dari 50 detik maka container akan di restart
