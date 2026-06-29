@@ -40,6 +40,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: example-app-liveness
+  namespace: devops-academy
 spec:
   selector:
     app: example-app-liveness
