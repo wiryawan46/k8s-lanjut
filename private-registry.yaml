@@ -15,7 +15,7 @@ spec:
       - name: my-private-registry # sesuaikan dengan nama secret yang dibuat
       containers:
       - name: nginx-private
-        image: rahadiangg/nginx-private:alpine # gunakan private image kalian
+        image: manggalakrida46/devops-academy:v1 # gunakan private image kalian
         resources:
           limits:
             memory: "10Mi"
