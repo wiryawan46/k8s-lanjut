@@ -47,7 +47,7 @@ spec:
   tls:
   - hosts:
     - life4devops.site
-    secretName: tls-life4devops # Secret ini akan dibuat otomatis oleh cert-manager
+    secretName: devops-tls # Secret ini akan dibuat otomatis oleh cert-manager
   rules:
   - host: life4devops.site
     http:
