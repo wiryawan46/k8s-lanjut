@@ -12,7 +12,7 @@ spec:
         app: nginx-private
     spec:
       imagePullSecrets:
-      - name: my-private-registry # sesuaikan dengan nama secret yang dibuat
+      - name: docker-hub-secret # sesuaikan dengan nama secret yang dibuat
       containers:
       - name: nginx-private
         image: manggalakrida46/devops-academy:v1 # gunakan private image kalian
